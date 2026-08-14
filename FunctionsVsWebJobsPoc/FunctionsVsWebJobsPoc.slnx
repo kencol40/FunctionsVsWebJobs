@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/FunctionsVsWebJobsPoc.AppHost/FunctionsVsWebJobsPoc.AppHost.csproj" />
+    <Project Path="src/FunctionsVsWebJobsPoc.Core/FunctionsVsWebJobsPoc.Core.csproj" />
+    <Project Path="src/FunctionsVsWebJobsPoc.FunctionApp/FunctionsVsWebJobsPoc.FunctionApp.csproj" />
+    <Project Path="src/FunctionsVsWebJobsPoc.ServiceDefaults/FunctionsVsWebJobsPoc.ServiceDefaults.csproj" />
+    <Project Path="src/FunctionsVsWebJobsPoc.WebJobApp/FunctionsVsWebJobsPoc.WebJobApp.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FunctionsVsWebJobsPoc.Core.Tests/FunctionsVsWebJobsPoc.Core.Tests.csproj" />
+    <Project Path="tests/FunctionsVsWebJobsPoc.IntegrationTests/FunctionsVsWebJobsPoc.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

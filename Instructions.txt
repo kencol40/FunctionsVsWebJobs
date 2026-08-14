@@ -1,0 +1,58 @@
+##Story
+As a Software engineer I want to explore the differences, pro's and cons for development and maintenance for two approaches to performing the same tasks using Microsoft Azure tooling. In this case I specifically want to explore Azure Functions vs Azure webjobs.
+
+##Context
+I have 2 tasks to perform 
+	1) When a CSV file is uploaded to a configured blob storage container, I want to run a process that will read the CSV file, write the data to an SQL database using entity framework.
+	2) When a message is uploaded into an Azure service bus queue, I want to run a process that consumes the message and writes the body of the message to an SQL database using entity framework.
+
+I want to showcase the tasks being executed using 2 different approaches.
+	1) A standard azure function app with bindings for blob to consume the file and service bus triggers to consume the message when they arrives.
+	2) use a webjob to consume the file and message. I'm not sure of the webjob features to enable consuming the file and message so I want you to find something that will do this.
+
+The reason I'm doing this is or organisation have been having discussions on this topic with statements being made that functions are rubbish and generate additional long term maintenance costs. Coupled with the fact that Functions are simply built on top of webjobs anyway.  So my purpose is to explore the discussion with actual code and get a comparison and discussion on what works well and what does not and how much additional code do I need anyway.
+
+##Tasks
+* Create a solution for me
+* orchestrate an environment locally using Azure Aspire (I have docker desktop installed)
+  ** Storage Account with 2 containers called function and webjob
+  ** Service Bus emulator with 2 queues called function and webjob
+  ** An sql server instance running in a container called jebjobPoc. This should include a start up script to create the database and the required tables EG function_blobrow_data and webjob_blobrow_data and function_message_data and webjob_message_data that contains an identifier column and a json column for the data.
+  ** An Azure Function app
+  ** A Azure Webjob
+* Function Blob - generate processing for each so that the blob is consumed when it is uploaded to storage and each row of data from the CSV is written as JSON to the function_blobrow_data table
+* Function Service Bus Trigger - generate processing for each so that the message is consumed when uploaded ad data is written as JSON to the function_message_data table
+* Webjob Blob - generate processing for each so that the blob is consumed when it is uploaded to storage and each row of data from the CSV is written as JSON to the webjob_blobrow_data table
+* WebJob Service Bus - generate processing for each so that the message is consumed when uploaded ad data is written as JSON to the webjob_message_data table
+* Generate tests to verify when the same blob is written to the function and webjob containers, the same data is written to the required tables and the rows match between the function and webjob
+* Generate tests to verify when the same message is uploaded to the function and webjob queus, the same data is written to the required tables and the rows match between the function and webjob
+* Perform a code review of the function and webjob stacks and generate a report that documents an overview of the process, pro's and cons for webjob vs function and AI overview on overall maintainability of webjobs vs functions looking at the full lifecycle from developer onboarding to ongoing ease of maintenance, platform changes e.g function runtime changes, changes similar to the change to inprocess, dot net versions and maintaining packages for security, vulnerabilities and depreciated / obsolete features.
+
+##Constraints
+* Use a .net app with C# using .net10 and current packages.
+* AI to choose an appropriate method for implementing "blob triggers' and 'servicebus triggers'
+* use a DI for everything
+* Use a service / handler pattern for processing to keep the trigger implementations light weight.
+* Where practical use factory methods and clients
+* Code format should enable testing of each component in isolation using moc frameworks. Use Moq as the mocking framework.
+* Implement the database context as an injectable context for the webjob and the function app.
+* Sql is the Microsoft Server SQL container image available in aspire.
+* The code should include a unit test project configured for xunit.
+* There is no Repo yet as this is a local POC, please add a file with instructions to create a repo in GitHub in my private space not my org space.
+* All files should be saved to a new appropriately named folder in the Z:\source\POCs\FunctionsVsWebJobs
+* Reports and document to be .MD files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
